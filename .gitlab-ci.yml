@@ -3,6 +3,7 @@ image: node:7.9
 stages:
   - setup
   - test
+  - deploy
 
 cache:
   paths:
@@ -17,3 +18,9 @@ test:
   stage: test
   script:
     - yarn test
+
+deploy: 
+  stage: deploy
+  script:
+  - gem install dpl
+  - dpl --provider=heroku --app=react-app-test-2 --api-key=$HEROKU_API_KEY
